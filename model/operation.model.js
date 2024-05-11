@@ -11,7 +11,7 @@ const operationRecord = seq.define('jh_operation_record', {
     allowNull: false
   },
   jh_operation_time: {
-    type: DataTypes.STRING,
+    type: DataTypes.DATE,
     allowNull: false
   },
   jh_operation_detail: {

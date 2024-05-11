@@ -11,7 +11,7 @@ const extractData = (html, type) => {
   targetTrs.each(function () {
     const itemObj = {}
     $(this).find('td').each(function(i) {
-      itemObj[keyArr[type][i]] = i===1 ? dayjs($(this).text()).format('YYYY-MM-DD HH:mm:ss') : $(this).text()
+      itemObj[keyArr[type][i]] = i===1 ? dayjs($(this).text()).valueOf() : $(this).text()
     })
     records.unshift(itemObj)
   })

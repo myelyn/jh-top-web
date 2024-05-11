@@ -11,7 +11,7 @@ const KillRecord = seq.define('jh_kill_record', {
     allowNull: false
   },
   jh_kill_time: {
-    type: DataTypes.STRING,
+    type: DataTypes.DATE,
     allowNull: false
   },
   jh_kill_method: {
