@@ -26,5 +26,5 @@ const KillRecord = seq.define('jh_kill_record', {
   }]
 })
 
-KillRecord.sync()
+// KillRecord.sync()
 module.exports = KillRecord

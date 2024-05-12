@@ -1,4 +1,5 @@
 const cheerio = require('cheerio')
+const dayjs = require('dayjs')
 const { keyArr } = require('./constants')
 
 const extractData = (html, type) => {
@@ -10,9 +11,9 @@ const extractData = (html, type) => {
   targetTrs.each(function () {
     const itemObj = {}
     $(this).find('td').each(function(i) {
-      itemObj[keyArr[type][i]] = $(this).text()
+      itemObj[keyArr[type][i]] = i===1 ? dayjs($(this).text()).format('YYYY-MM-DD HH:mm:ss') : $(this).text()
     })
-    records.push(itemObj)
+    records.unshift(itemObj)
   })
   return records
 }

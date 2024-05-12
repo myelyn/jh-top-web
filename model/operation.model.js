@@ -26,5 +26,5 @@ const operationRecord = seq.define('jh_operation_record', {
   }]
 })
 
-operationRecord.sync()
+// operationRecord.sync()
 module.exports = operationRecord
