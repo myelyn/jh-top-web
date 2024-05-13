@@ -3,11 +3,12 @@ const extractData = require('./utils/extractData')
 const getTotalPage = require('./utils/getTotalPage')
 const fetchData = require('./utils/fetchData')
 const asyncLoop = require('./utils/asyncLoop')
-const { bulkCreateKillRecord } = require('./service/killrecord.service')
-const { bulkCreateOperationRecord } = require('./service/operation.service')
+const { bulkCreateKillRecord, getKillRecord } = require('./service/killrecord.service')
+const { bulkCreateOperationRecord, getOperationRecord } = require('./service/operation.service')
 
 const delay = 5000
 const writeRecord = async (type, total) => {
+  const JLTYPE = 'jl'
   // 传入新增写入的页数，或者获取总页数全量写入
   const totalPage = total || await getTotalPage(`http://www.zuijh.net/jl/${type}.html`)
 
@@ -19,9 +20,12 @@ const writeRecord = async (type, total) => {
     // 爬取html
     const htmlResult = await fetchData(url)
     // 从html中提取需要写入数据库的数据，转为数组
-    const arrResult = extractData(htmlResult, type)
+    const { arrResult, newEstResult } = extractData(htmlResult, type)
+    // 先判断最新的一条记录 在数据库里是否已经存在
+    const isDulpicate = type === JLTYPE ? await getKillRecord(newEstResult) : await getOperationRecord(newEstResult)
+    if (isDulpicate) return
     // 写入数据库
-    await type === 'jl' ? bulkCreateKillRecord(arrResult) : bulkCreateOperationRecord(arrResult)
+    type === JLTYPE ? await bulkCreateKillRecord(arrResult) : await bulkCreateOperationRecord(arrResult)
   }
 
   // 异步循环,该网站限制页面请求间隔为5秒
@@ -42,5 +46,4 @@ const doJob = () => {
 }
 
 doJob()
-
 

@@ -15,7 +15,11 @@ const extractData = (html, type) => {
     })
     records.unshift(itemObj)
   })
-  return records
+  const len = records.length
+  return {
+    arrResult: records,
+    newEstResult: len > 0 ? records[len - 1] : null
+  }
 }
 
 module.exports = extractData
