@@ -13,12 +13,12 @@ const extractData = (html, type) => {
     $(this).find('td').each(function(i) {
       itemObj[keyArr[type][i]] = i===1 ? dayjs($(this).text()).valueOf() : $(this).text()
     })
-    records.unshift(itemObj)
+    records.push(itemObj)
   })
   const len = records.length
   return {
     arrResult: records,
-    newEstResult: len > 0 ? records[len - 1] : null
+    lastResult: len > 0 ? records[len - 1] : null,
   }
 }
 
