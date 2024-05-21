@@ -33,6 +33,7 @@
   onMounted(() => {
     setOptions = useEcharts(echartRef.value).setOptions
     renderChart()
+    renderTable(props.datas)
   })
 
   const props = defineProps({
@@ -108,7 +109,7 @@
     setOptions(option)
   }
 
-  watch(() => props.datas, (d) => {
+  const renderTable = (d) => {
     if (!d || !d.ctz) {
       return
     }
@@ -139,6 +140,11 @@
         max: Math.max(d.ctz[item['key']], d.mjs[item['key']])
       })
     })
+  }
+
+  watch(() => props.datas, (d) => {
+    
+    renderTable(d)
 
     renderChart()
   })

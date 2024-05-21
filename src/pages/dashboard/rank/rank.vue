@@ -13,14 +13,14 @@
       </li>
     </ul>
     <div class="md">
-      <overview v-if="viewTab==='1'" :datas="overviewData"></overview>
-      <playerlist v-if="viewTab==='2'" :datas="rankData"></playerlist>
+      <overview v-show="viewTab==='1'" :datas="overviewData"></overview>
+      <playerlist v-show="viewTab==='2'" :datas="rankData"></playerlist>
     </div>
   </div>
 </template>
 
 <script setup>
-  import { onMounted, ref, onActivated } from 'vue';
+  import { onMounted, ref, onActivated, nextTick } from 'vue';
   import { useRoute, useRouter } from 'vue-router'
   import { find, orderBy } from 'lodash'
   import io from '@/utils/request'
@@ -51,18 +51,13 @@
         rankData.value = orderBy(res.result, ['score'], ['desc'])
       })
     }
+    if (route.query && route.query.tab === '2') {
+      viewTab.value = '2'
+    }
   }
 
   onMounted(() => {
-    console.log('mounted')
     init()
-  })
-
-  onActivated(() => {
-    console.log('activated')
-    if (battleId.value != route.params.id) {
-      init()
-    }
   })
 </script>
 
