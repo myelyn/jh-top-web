@@ -1,0 +1,26 @@
+@import '../font/iconfont.css';
+body {
+  padding: 0;
+  margin: 0;
+}
+#app {
+  height: 100%;
+  background-color: #eef3f8;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.el-table {
+  font-size: 12px;
+  th.el-table__cell {
+    color: #333;
+  }
+}
