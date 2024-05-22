@@ -53,6 +53,11 @@
         text-align: center;
       }
     }
+    @media screen and (max-width: 780px) {
+      .el-aside, .el-header {
+        display: none;
+      }
+    }
     .el-main {
       background-color: #fff;
       height: calc(100vh - 60px);
