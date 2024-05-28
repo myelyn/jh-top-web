@@ -13,6 +13,12 @@
         <el-header>本次赛事由纯阳、听雪楼、纵横（按首字母排序）组成的<b> CTZ战队 </b>，对战由魔教、君临天下、神剑山庄（按首字母排序）组成的<b> MJS战队 </b>。</el-header>
         <el-main>
           <router-view></router-view>
+          <!-- <router-view v-slot="{ Component }">
+            <keep-alive>
+              <component :is="Component"  v-if="$route.meta.keepAlive" :key="$route.name"/>
+            </keep-alive>
+            <component :is="Component"  v-if="!$route.meta.keepAlive" :key="$route.name"/>
+          </router-view> -->
         </el-main>
       </el-container>
     </el-container>

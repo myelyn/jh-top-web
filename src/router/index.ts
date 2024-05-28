@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-
+import { ref } from 'vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -16,20 +16,26 @@ const router = createRouter({
     {
       path: '/dashboard/detail/:battleId/:playerId',
       name: 'dashboardDetail',
+      meta: {
+        keepAlive: ref(false)
+      },
       component: () => import('@/pages/dashboard/detail/detail.vue'),
     },
     {
       path: '/dashboard/:id',
       name: 'dashboardRank',
-      meta: {
-        keepAlive: true
-      },
+      meta: {},
       component: () => import('@/pages/dashboard/rank/rank.vue'),
     },
     {
       path: '/analysys',
       name: 'analysysIndex',
       component: () => import('@/pages/analysys/index.vue'),
+    },
+    {
+      path: '/manage',
+      name: 'manageBattle',
+      component: () => import('@/pages/manage/manageBattle.vue'),
     }
   ]
 });

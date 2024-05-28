@@ -15,8 +15,8 @@ export default defineConfig({
     port: 5020,
     proxy: {
       '/jh': {
-        target: 'http://8.138.129.122:9090',
-        // target: 'http://localhost:9090',
+        // target: 'http://8.138.129.122:9090',
+        target: 'http://localhost:9090',
         ws: true,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/jh/, '')

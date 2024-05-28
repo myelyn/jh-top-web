@@ -16,6 +16,11 @@
   </div>
 </template>
 
+<script>
+  export default {
+    name: 'dashboardRankIndex'
+  }
+</script>
 <script setup>
 import { onMounted, ref } from 'vue';
 import { orderBy } from 'lodash'

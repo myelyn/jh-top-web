@@ -43,7 +43,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="suicide" label="自杀" min-width="60"/>
-        <el-table-column fixed="right" prop="operation" label="操作" min-width="100">
+        <el-table-column prop="operation" label="操作" min-width="100">
           <template #default="scope">
             <span class="link" @click="showPlayerDetail(scope.row.battleId, scope.row.playerId)">查看选手数据</span>
           </template>

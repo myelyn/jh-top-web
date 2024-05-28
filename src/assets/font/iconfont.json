@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1684595",
+      "name": "王冠",
+      "font_class": "wangguan",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "5950866",
+      "name": "哭脸",
+      "font_class": "kulian",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "9024868",
+      "name": "谁是卧底",
+      "font_class": "u___fm__gp_-copy",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
       "icon_id": "18788160",
       "name": "可怜",
       "font_class": "kelian",

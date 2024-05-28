@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-  import { onMounted, ref, onActivated, nextTick } from 'vue';
+  import { onMounted, ref, onActivated, nextTick, onUnmounted } from 'vue';
   import { useRoute, useRouter } from 'vue-router'
   import { find, orderBy } from 'lodash'
   import io from '@/utils/request'
@@ -57,7 +57,16 @@
   }
 
   onMounted(() => {
+    console.log('onMounted')
     init()
+  })
+
+  onUnmounted(() => {
+    console.log('onUnMounted')
+  })
+
+  onActivated(() => {
+    console.log('onActivated')
   })
 </script>
 
