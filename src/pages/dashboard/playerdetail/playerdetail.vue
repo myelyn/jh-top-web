@@ -37,12 +37,9 @@
 
   const back = () => {
     router.push({
-      name: 'dashboardRank',
+      name: 'rankDetail',
       params: {
         id: battleId.value
-      },
-      query: {
-        tab: '2'
       }
     })
   }
@@ -139,6 +136,18 @@
       })
     }
   })
+</script>
+
+<script>
+  import { useKeepPageStore } from '@/stores/useKeepPageStore'
+  const keepPageStore = useKeepPageStore()
+  export default {
+    beforeRouteLeave(to, from) {
+      if (to.name !== 'rankDetail') {
+        keepPageStore.removeInclude('rankDetailVue')
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>

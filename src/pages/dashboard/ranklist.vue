@@ -16,11 +16,6 @@
   </div>
 </template>
 
-<script>
-  export default {
-    name: 'dashboardRankIndex'
-  }
-</script>
 <script setup>
 import { onMounted, ref } from 'vue';
 import { orderBy } from 'lodash'
@@ -33,7 +28,7 @@ const list = ref([])
 
 const goDetail = (id) => {
   router.push({
-    name: 'dashboardRank',
+    name: 'rankDetail',
     params: {
       id
     }

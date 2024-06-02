@@ -48,14 +48,19 @@
     if (!props.datas) {
       return
     }
-    let seriesDataCtz = new Array(6).fill(0)
-    let seriesDataMjs = new Array(6).fill(0)
-    const axisData = reverse(['总杀人', '总招杀', '总毒杀', '总法器杀人', '总小孩杀人',  '总助攻', '总解除', '总陷害', '总吸血', '总死亡', '总承伤', '平均评分'])
+    let seriesDataCtz1 = new Array(6).fill(0)
+    let seriesDataMjs1 = new Array(6).fill(0)
+    let seriesDataCtz2 = new Array(6).fill(0)
+    let seriesDataMjs2 = new Array(6).fill(0)
+    const axisData1 = reverse(['总杀人', '总招杀', '总毒杀', '总法器杀', '总小孩杀', '总死亡'])
+    const axisData2 = reverse(['总助攻', '总解除', '总陷害', '总吸血', '总承伤', '平均评分'])
     if (props.datas.ctz) {
-      seriesDataCtz = reverse(values(pick(props.datas.ctz, ['k', 'k_zs', 'k_ds', 'k_fq', 'k_xh', 'a', 'a_jc', 'a_xh', 'a_xx', 'd', 's', 'avgscore'])))
+      seriesDataCtz1 = reverse(values(pick(props.datas.ctz, ['k', 'k_zs', 'k_ds', 'k_fq', 'k_xh', 'd'])))
+      seriesDataCtz2 = reverse(values(pick(props.datas.ctz, ['a', 'a_jc', 'a_xh', 'a_xx', 's', 'avgscore'])))
     }
     if (props.datas.mjs) {
-      seriesDataMjs = reverse(values(pick(props.datas.mjs, ['k', 'k_zs', 'k_ds', 'k_fq', 'k_xh', 'a', 'a_jc', 'a_xh', 'a_xx', 'd', 's', 'avgscore'])))
+      seriesDataMjs1 = reverse(values(pick(props.datas.mjs, ['k', 'k_zs', 'k_ds', 'k_fq', 'k_xh', 'd'])))
+      seriesDataMjs2 = reverse(values(pick(props.datas.mjs, ['a', 'a_jc', 'a_xh', 'a_xx', 's', 'avgscore'])))
     }
 
     const option = {
@@ -66,20 +71,29 @@
           type: 'shadow'
         }
       },
-      grid: {
+      grid: [{
         left: '3%',
         right: '5%',
+        top: '5%',
+        bottom: '50%',
+        containLabel: true
+      }, {
+        left: '3%',
+        right: '5%',
+        top: '53%',
         bottom: '3%',
         containLabel: true
-      },
-      xAxis: {
+      }],
+      xAxis: [{
+        type: 'value'
+      }, {
         type: 'value',
-        boundaryGap: [0, 0.01]
-      },
+        gridIndex: 1
+      }],
       legend: {},
-      yAxis: {
+      yAxis: [{
         type: 'category',
-        data: axisData,
+        data: axisData1,
         axisLabel: {
           color: '#333',
           fontSize: 12
@@ -92,17 +106,47 @@
         axisTick: {
           show: false
         }
-      },
+      }, {
+        type: 'category',
+        data: axisData2,
+        gridIndex: 1,
+        axisLabel: {
+          color: '#333',
+          fontSize: 12
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#D9D9DA'
+          }
+        },
+        axisTick: {
+          show: false
+        }
+      }],
       series: [
         {
           name: 'CTZ',
           type: 'bar',
-          data: seriesDataCtz
+          data: seriesDataCtz1
         },
         {
           name: 'MJS',
           type: 'bar',
-          data: seriesDataMjs
+          data: seriesDataMjs1
+        },
+        {
+          name: 'CTZ',
+          type: 'bar',
+          xAxisIndex: 1,
+          yAxisIndex: 1,
+          data: seriesDataCtz2
+        },
+        {
+          name: 'MJS',
+          type: 'bar',
+          xAxisIndex: 1,
+          yAxisIndex: 1,
+          data: seriesDataMjs2
         }
       ]
     }

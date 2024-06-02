@@ -41,7 +41,6 @@
   const battleId = ref()
 
   const init = () => {
-    viewTab.value = '1'
     battleId.value = route.params.id
     if (battleId.value) {
       io.get('/battle/list').then(res => {
@@ -51,23 +50,29 @@
         rankData.value = orderBy(res.result, ['score'], ['desc'])
       })
     }
-    if (route.query && route.query.tab === '2') {
-      viewTab.value = '2'
-    }
   }
 
   onMounted(() => {
-    console.log('onMounted')
     init()
   })
 
-  onUnmounted(() => {
-    console.log('onUnMounted')
-  })
+</script>
 
-  onActivated(() => {
-    console.log('onActivated')
-  })
+<script>
+  import { useKeepPageStore } from '@/stores/useKeepPageStore'
+  const keepPageStore = useKeepPageStore()
+  
+  export default {
+    name: 'rankDetailVue',
+    beforeRouteEnter(to, from) {
+      keepPageStore.addInclude('rankDetailVue')
+    },
+    beforeRouteLeave(to, from) {
+      if (to.name !== 'playerDetail') {
+        keepPageStore.removeInclude('rankDetailVue')
+      }
+    }
+  }
 </script>
 
 <style lang="scss">

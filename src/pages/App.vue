@@ -12,13 +12,11 @@
       <el-container>
         <el-header>本次赛事由纯阳、听雪楼、纵横（按首字母排序）组成的<b> CTZ战队 </b>，对战由魔教、君临天下、神剑山庄（按首字母排序）组成的<b> MJS战队 </b>。</el-header>
         <el-main>
-          <router-view></router-view>
-          <!-- <router-view v-slot="{ Component }">
-            <keep-alive>
-              <component :is="Component"  v-if="$route.meta.keepAlive" :key="$route.name"/>
+          <router-view v-slot="{ Component }">
+            <keep-alive :include="include">
+              <component :is="Component" :key="$route.name"/>
             </keep-alive>
-            <component :is="Component"  v-if="!$route.meta.keepAlive" :key="$route.name"/>
-          </router-view> -->
+          </router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -26,7 +24,11 @@
 </template>
 
 <script setup>
+  import { storeToRefs } from 'pinia'
   import siderMenu from '@/components/siderMenu/index.vue'
+  import { useKeepPageStore } from '@/stores/useKeepPageStore'
+  const keepPageStore = useKeepPageStore()
+  const { include } = storeToRefs(keepPageStore)
 </script>
 
 <style scoped lang="scss">

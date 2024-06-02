@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { ref } from 'vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -11,21 +10,20 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'dashboardIndex',
-      component: () => import('@/pages/dashboard/index.vue')
+      component: () => import('@/pages/dashboard/ranklist.vue')
     },
     {
       path: '/dashboard/detail/:battleId/:playerId',
-      name: 'dashboardDetail',
-      meta: {
-        keepAlive: ref(false)
-      },
-      component: () => import('@/pages/dashboard/detail/detail.vue'),
+      name: 'playerDetail',
+      component: () => import('@/pages/dashboard/playerdetail/playerdetail.vue'),
     },
     {
       path: '/dashboard/:id',
-      name: 'dashboardRank',
-      meta: {},
-      component: () => import('@/pages/dashboard/rank/rank.vue'),
+      name: 'rankDetail',
+      meta: {
+        keepAlive: true
+      },
+      component: () => import('@/pages/dashboard/rankdetail/rankdetail.vue'),
     },
     {
       path: '/analysys',
@@ -38,6 +36,6 @@ const router = createRouter({
       component: () => import('@/pages/manage/manageBattle.vue'),
     }
   ]
-});
+})
 
 export default router;
