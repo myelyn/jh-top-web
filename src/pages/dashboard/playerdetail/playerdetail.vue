@@ -26,6 +26,7 @@
 <script setup>
   import { onMounted, ref } from 'vue';
   import { useRoute, useRouter } from 'vue-router'
+  import { orderBy } from 'lodash'
   import io from '@/utils/request'
 
   const route = useRoute()
@@ -49,8 +50,15 @@
       return
     }
     let str = ''
+    const arr = []
     Object.keys(obj).forEach(key => {
-      str += `<span style="margin-right: 10px;">${key}: ${obj[key]}</span>`
+      arr.push({
+        name: key,
+        value: obj[key]
+      })
+    })
+    orderBy(arr, ['value'], ['desc']).forEach(item => {
+      str += `<span style="margin-right: 10px;">${item.name}: ${item.value}</span>`
     })
     return str
   }
@@ -184,6 +192,7 @@
       .tit {
         width: 100px;
         font-size: 12px;
+        line-height: 20px;
         color: #999;
       }
 
