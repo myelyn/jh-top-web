@@ -9,7 +9,11 @@
   </el-tooltip>
   <el-tooltip v-else-if="text==='杀人王'" placement="top" :hide-after="0">
     <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-mvp"><i class="iconfont"></i>{{ text }}</span>
+    <span class="tag tag-mvp">{{ text }}</span>
+  </el-tooltip>
+  <el-tooltip v-else-if="text==='壕无人性'" placement="top" :hide-after="0">
+    <template #content>{{tagMap[text]}}</template>
+    <span class="tag tag-yuanbao"><i class="iconfont icon-yuanbao"></i>{{ text }}</span>
   </el-tooltip>
   <el-tooltip v-else-if="text==='满头包'" placement="top" :hide-after="0">
     <template #content>{{tagMap[text]}}</template>
@@ -57,7 +61,7 @@
   import { reactive } from 'vue'
   const tagMap = reactive({
     '这场克我': '这场被某某杀的比例最高',
-    '相爱相杀': '这场对某某用卡/配药/法器比较最高',
+    '相爱相杀': '这场对某某用卡/配药/法器比例最高',
     '杀手': '这场杀某某次数占自己杀人数的比例有点高哦',
     '追着打': '这场某某打我最多，记小本本上了',
     '全场MVP': '综合得分最高，斩获全场MVP',
@@ -95,7 +99,8 @@
     '武林高手': '招杀敌人数量全队第一',
     '我是卧底': '杀队友或者对队友用过卡片/配药/法器（用化功散分武功不算卧底行为）',
     '惨遭队友殴打': '被队友杀过或者用过卡片/配药/法器（用化功散分队友武功不算背刺行为）',
-    '有福同享': '给队友分武功'
+    '有福同享': '给队友分武功',
+    '壕无人性': '本场战斗花费金币全队第一且超过一定金额'
   })
 
   defineProps({
@@ -141,6 +146,15 @@
     border: none;
     color: #fff;
     padding: 0 4px;
+    .iconfont {
+      position: relative;
+      top: 1px;
+    }
+  }
+  .tag-yuanbao {
+    background-color: #ffcc00;
+    border: none;
+    color: #fff;
     .iconfont {
       position: relative;
       top: 1px;

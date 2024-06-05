@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "29797059",
+      "name": "元宝",
+      "font_class": "yuanbao",
+      "unicode": "100c9",
+      "unicode_decimal": 65737
+    },
+    {
       "icon_id": "1684595",
       "name": "王冠",
       "font_class": "wangguan",

@@ -4,7 +4,7 @@
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="label" label="">
           <template #default="scope">
-            <span :class="['k', 'a', 'd', 's'].includes(scope.row.key) && 'highlight'">{{scope.row.label}}</span>
+            <span :class="['k', 'a', 'd', 's', 'cost'].includes(scope.row.key) && 'highlight'">{{scope.row.label}}</span>
           </template>
         </el-table-column>
         <el-table-column prop="ctz" label="CTZ战队">
@@ -173,7 +173,8 @@
       {label: '总死亡', key: 'd', type: 'n'}, 
       {label: '总承伤', key: 's', type: 'n'}, 
       {label: '平均评分', key: 'avgscore', type: 'y'}, 
-      {label: '平均每死承伤', key: 'avgmscs', type: 'y'}
+      {label: '平均每死承伤', key: 'avgmscs', type: 'y'},
+      {label: '总花费金币(估算)', key: 'cost', type: 'n'}
     ]
     dataMap.forEach(item => {
       tableData.value.push({
@@ -202,7 +203,7 @@
     justify-content: space-between;
     .overview-table, .overview-chart {
       width: calc(50% - 6px);
-      height: 680px;
+      height: 720px;
       .red {
         color: red;
         font-weight: bold;
