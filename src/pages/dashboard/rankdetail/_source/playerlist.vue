@@ -12,9 +12,13 @@
             {{scope.$index + 1}}
           </template>
         </el-table-column>
-        <el-table-column prop="name" label="侠客姓名" min-width="220">
+        <el-table-column fixed prop="name" label="侠客姓名" min-width="72">
           <template #default="scope">
             <span class="jhname">{{scope.row.name}}</span><br/>
+          </template>
+        </el-table-column>
+        <el-table-column prop="name" label="全部角色" min-width="220">
+          <template #default="scope">
             <span class="rolename">{{scope.row.roles.join('/')}}</span>
           </template>
         </el-table-column>

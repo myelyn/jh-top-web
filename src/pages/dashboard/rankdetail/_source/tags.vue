@@ -11,6 +11,10 @@
     <template #content>{{tagMap[text]}}</template>
     <span class="tag tag-mvp">{{ text }}</span>
   </el-tooltip>
+  <el-tooltip v-else-if="text==='天秀'" placement="top" :hide-after="0">
+    <template #content>{{tagMap[text]}}</template>
+    <span class="tag tag-xiu"><i class="iconfont icon-icon"></i>{{ text }}</span>
+  </el-tooltip>
   <el-tooltip v-else-if="text==='壕无人性'" placement="top" :hide-after="0">
     <template #content>{{tagMap[text]}}</template>
     <span class="tag tag-yuanbao"><i class="iconfont icon-yuanbao"></i>{{ text }}</span>
@@ -21,15 +25,15 @@
   </el-tooltip>
   <el-tooltip v-else-if="text==='挨最毒的打'" placement="top" :hide-after="0">
     <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-mtb"><i class="iconfont icon-kelian"></i>{{ text }}</span>
+    <span class="tag tag-mtb"><i class="iconfont icon-kulian"></i>{{ text }}</span>
   </el-tooltip>
   <el-tooltip v-else-if="text==='我是卧底'" placement="top" :hide-after="0">
     <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-mtb"><i class="iconfont icon-u___fm__gp_-copy"></i>{{ text }}</span>
+    <span class="tag tag-wd"><i class="iconfont icon-u___fm__gp_-copy"></i>{{ text }}</span>
   </el-tooltip>
   <el-tooltip v-else-if="text==='惨遭队友殴打'" placement="top" :hide-after="0">
     <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-mtb"><i class="iconfont icon-kulian"></i>惨遭背刺</span>
+    <span class="tag tag-wd">惨遭背刺</span>
   </el-tooltip>
   <el-tooltip v-else-if="text.endsWith('这场克我')" placement="top" :hide-after="0">
     <template #content>{{tagMap['这场克我']}}</template>
@@ -86,7 +90,7 @@
     '我信佛哦': '本场没杀人，但下一场不一定哦',
     '打了个酱油': '没用过卡片/配药/法器',
     '广结善缘': '没被别人过卡片/配药/法器',
-    '天秀': 'KDA超高且杀人很多，不容易获得哦',
+    '天秀': '太秀了吧，不容易获得哦',
     '超硬': '每次死亡承受的卡片/配药/法器伤害特别高，想杀我很难',
     '很硬': '每次死亡承受的卡片/配药/法器伤害很高，不容易死',
     '有点硬': '每次死亡承受的卡片/配药/法器伤害比较高',
@@ -151,6 +155,16 @@
       top: 1px;
     }
   }
+  .tag-xiu {
+    background-image: linear-gradient(-45deg, #2b5cff, #d057ff);
+    border: none;
+    color: #fff;
+    padding: 0 4px;
+    .iconfont {
+      position: relative;
+      top: 1px;
+    }
+  }
   .tag-yuanbao {
     background-color: #ffcc00;
     border: none;
@@ -169,13 +183,18 @@
     color: #022202;
     .iconfont {
       position: relative;
+      top: 0px;
+    }
+    .icon-kelian {
       top: 2px;
     }
-    .icon-u___fm__gp_-copy, .icon-kulian {
+  }
+  .tag-wd {
+    border: 1px solid #a09797;
+    color: #a09797;
+    .iconfont {
+      position: relative;
       top: 0;
-    }
-    .icon-kulian {
-      margin-right: 3px;
     }
   }
   

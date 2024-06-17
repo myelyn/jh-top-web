@@ -167,7 +167,7 @@
       {label: '总解除', key: 'a_jc', type: 'y'}, 
       {label: '总陷害', key: 'a_xh', type: 'y'}, 
       {label: '总吸血', key: 'a_xx', type: 'y'}, 
-      {label: '总法器失改', key: 'a_fq', type: 'y'}, 
+      {label: '总法器失败', key: 'a_fq', type: 'y'}, 
       {label: '总霹雳', key: 'a_pl', type: 'y'}, 
       {label: '总死神', key: 'a_ss', type: 'y'}, 
       {label: '总死亡', key: 'd', type: 'n'}, 
@@ -214,4 +214,12 @@
       }
     }
   }
+  @media screen and (max-width: 780px) {
+    .overview-wrapper {
+      flex-wrap: wrap;
+        .overview-table, .overview-chart {
+          width: 100%;
+        }
+      }
+    }
 </style>
