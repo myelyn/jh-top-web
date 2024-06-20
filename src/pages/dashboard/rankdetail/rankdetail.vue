@@ -40,15 +40,18 @@
   }
   const battleId = ref()
 
-  const init = () => {
+  const init = async () => {
     battleId.value = route.params.id
     if (battleId.value) {
-      io.get('/battle/list').then(res => {
-        overviewData.value = find(res.result, o => o.id == battleId.value)
-      })
-      io.get(`/battlerank?battleId=${battleId.value}`).then(res => {
-        rankData.value = orderBy(res.result, ['score'], ['desc'])
-      })
+      const res1 = await io.get('/battle/list')
+      const resCurOverview = find(res1.result, o => o.id == battleId.value)
+      const res2 = await io.get(`/battlerank?battleId=${battleId.value}`)
+      rankData.value = orderBy(res2.result, ['score'], ['desc'])
+      try {
+        resCurOverview.ctz.totalplayer = rankData.value.filter(o => o.camp==='1')?.length || '-'
+        resCurOverview.mjs.totalplayer = rankData.value.filter(o => o.camp==='2')?.length || '-'
+      }catch(e){}
+      overviewData.value = resCurOverview
     }
   }
 

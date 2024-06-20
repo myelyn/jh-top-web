@@ -158,6 +158,7 @@
       return
     }
     const dataMap = [
+      {label: '参战人数', key: 'totalplayer', type: 'y'},
       {label: '总杀人', key: 'k', type: 'y'}, 
       {label: '总招杀', key: 'k_zs', type: 'y'}, 
       {label: '总毒杀', key: 'k_ds', type: 'y'}, 
@@ -190,7 +191,6 @@
   watch(() => props.datas, (d) => {
     
     renderTable(d)
-
     renderChart()
   })
 </script>
